@@ -1,0 +1,44 @@
+Notes:
+	Modified config to take the path using cwd
+	Modified Simulator to take in command line arguments if specific
+	Modified simulator to produce output file that can output config, time, classification - can be expanded to do other exports
+	Change benchmark data -> "Benchmark_Data"
+	Wrote naive python code to produce N random configurations: produced 60k & 120k
+	Git repository to be uploaded on request
+	
+	potential: adding function to compute the delta; lets define delta as volume/time?
+		Called connectivity
+		
+	Questions:
+		Can I assume that I will always have a log file for a given application, or is this meant to model. ie. if I want to build my neural net, can I preprocess the data..
+			ie. connectivity can i derive?
+			
+		Neural Net Ideas:
+		Each input is a node[0:15]
+		
+	TODO: 
+	
+	Timing: 52mins for 200 sim -> Roughly 15 sec per sim
+			200k sim projected at -> 50000 minutes -> 47 days -_-
+				This definitely needs to be distributed across 400 nodes
+				
+	Parallel python script
+	
+Week 2:
+	Creating script to distribute Simulator over N nodes
+		Still need to fix the i/o file parsing and naming issues
+			Goal: 3 Types:	1) Connectivity
+							2) Log Analysis
+							3) NeuralNet Training Data
+		ConfigurationFiles for parallel processing must be named as: ParallelConfigurations-NumberOfSamples.txt
+			ie. ParallelConfigurations-60000.txt
+	!!! Need to add nodeCount back in as sysargv[3] - other ideas to explore include reading from the node argument
+        Still need to make hostfile, waiting on richard to do that.
+	
+    21mins for 600!
+	
+	TensorFlow: Reading
+	DNN: Still unsure
+
+
+

@@ -1,0 +1,17 @@
+function allconextract
+%This function is to extract all configurations from all result text files
+%in the folder.
+allfiles=dir;
+filenum=size(allfiles,1)-2;
+allcon=char(zeros(filenum,37));
+for i=3:filenum+2
+    filename=allfiles(i).name
+    filenamenum=str2num(filename(1,1:3))
+    
+    adjust=size(filenamenum,2)
+    raw=textread(filename,'%c');
+    config=raw(84+adjust:120+adjust,1)';
+    allcon(i,:)=config;
+end
+save ('allcon.txt',allcon)
+    
