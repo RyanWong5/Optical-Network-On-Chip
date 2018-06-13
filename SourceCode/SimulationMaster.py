@@ -14,9 +14,6 @@ import sys
 import os
 import subprocess
 
-#GlobalNode Variable, adjust as needed
-nodeCount = 4
-
 
 #Break the large Argument File into smaller files to be partitioned to the
 #parallal version of the application
@@ -66,6 +63,7 @@ def partitionWork(inFile, nodes):
 def main():
 
     comm = MPI.COMM_WORLD
+    nodeCount = comm.Get_size()
     rank = comm.Get_rank()
     #Get the current dir -> and the relative simulation configurations
     #Always Name Configuration folder as Configurations/
