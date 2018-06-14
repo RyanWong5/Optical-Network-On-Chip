@@ -40,5 +40,9 @@ Week 2:
 	TensorFlow: Reading
 	DNN: Still unsure
 
+Week 3:
+    Simulation Ran for 60k tests, lowest latency I could find was 2.5xxx;
+    Will need to run a statistical analysis on it, to get min max med etc. 
+    This should be sufficient to get our basic NN started
 
 
