@@ -38,7 +38,7 @@ def partitionWork(inFile, nodes):
                 str(configCount) + "-" + str(distNode) + ".txt","a") \
                 as distFile:
                 distFile.write(line)
-#                print(distNode,line)
+                print(distNode,line)
             internalWork -=1
 #always decrement the work since a line has been done
 #use extraLine as a flag to designate if an extraline has been added
@@ -81,13 +81,14 @@ def main():
             #Which configuration file to process - configured to be: ParallelFiles/ParallelConfigurations-$(COUNT)-node.txt
             configName = "ParallelFiles/ParallelConfigurations-" + \
                 str(configCount) + "-" + str(i) + ".txt" 
-#            print(configName)
+            print(configName)
             data = [str(sys.argv[1]), configName]
             req = comm.isend(data,dest = i , tag = i)
 
+        #Do master thread's work
         pythonArg = ['python', 'Simulation2.py',str(sys.argv[1]), \
             str("ParallelFiles/ParallelConfigurations-" + \
-            str(configCount) + "-0.txt")]
+            str(configCount) + "-0.txt"), str(rank)]
         print("being T" , rank)
         subprocess.call(pythonArg, shell=False)
     #slave threads
@@ -99,8 +100,9 @@ def main():
         configFile = data[1]
         #Form the argument list to to execute in the subprocess.
         #Set shell to false since using user defined arugments
-        pythonArg = ['python', 'Simulation2.py',str(logfile), str(configFile)]
-        print("being T" , rank)
+        #rank arg passed for Identification
+        pythonArg = ['python', 'Simulation2.py',str(logfile), str(configFile), str(rank)]
+#        print("being T" , rank, logfile, configFile, rank)
         subprocess.call(pythonArg, shell=False)
 
          

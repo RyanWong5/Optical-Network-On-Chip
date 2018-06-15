@@ -50,7 +50,7 @@ def GenHeader(masterFile,count):
 def ConvertFile(masterFile, addFile):
     #for every file in fileList, read it line by line and add them to the master
     for file in addFile:
-        with open(file,"r") as read:
+        with open(file,'r') as read:
             for line in read:
                 line = line.split(';')
                 #write the config list- It is possible that the internal spaces
@@ -71,7 +71,7 @@ def main():
     try:
         folder = str(sys.argv[1])
     except: 
-        folder = "ConfigurationAnalysis/"
+        folder = 'ConfigurationAnalysis/'
     
     #for all the output files in the folder, add them to a list to be processed
     for file in os.listdir(folder):
@@ -79,13 +79,22 @@ def main():
             files.append(str(folder) + '/' + str(file))
         
 
+    #If there are no generated datafiles from the simulation, or none were found
+    #Exit the converter
+    if(len(files)==0):
+        print('No Configurational Data Files Found')
+        exit()
+
     #get the number of configurations being fused
     configs =  files[0].split('-')
     numberOfConfigs = configs[1]
     
     
+    #All TensorFlow data will be placed in TF folder
+    outputDir = 'TF/'
     #Create the masterfile to append everything to
-    masterFile = open("config-data-" + str(numberOfConfigs) + ".csv", ("w+"))
+    masterFile = open(str(outputDir) + 'config-data-' + str(numberOfConfigs) \
+         + '.csv', ('w+'))
     #Write the headerfile
     GenHeader(masterFile,numberOfConfigs)
     #Build the CSV

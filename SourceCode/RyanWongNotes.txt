@@ -50,6 +50,8 @@ Week 3:
     
     DNN Classifier - will try 2 hidden layers of 16 nodes ea
     Activation Functions: Either ReLu ( Hot right now) or sigmoid (non-linear)
+    
+    BUG: When Distributing files the files are not properly being executed
 
     
 
