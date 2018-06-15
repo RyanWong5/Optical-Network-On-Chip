@@ -41,9 +41,9 @@ if (len(sys.argv) >= 3):
 	#configruationSplit = configurationFilePath.split("/")
 	#configurationFile = configruationSplit[-1]
 #    print("the config file: ", configurationFile)
-#else:
-#	logFile = 'flow_freqmine100#2.txt'#'flow_dedup.log'#'test_walston_004.log' the log file that will be tested
-#	configurationFile = 'AllConfigurations-5.txt' #The file with only configurations in it.
+else:
+	logFile = 'flow_freqmine100#2.txt'#'flow_dedup.log'#'test_walston_004.log' the log file that will be tested
+	configurationFile = 'AllConfigurations-5.txt' #The file with only configurations in it.
 weighted_cutoff = 20 # max nodes allowed to be bypassed on furthest path (Change at will)
 
 

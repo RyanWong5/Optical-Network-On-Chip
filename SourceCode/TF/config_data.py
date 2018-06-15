@@ -9,13 +9,13 @@ import tensorflow as tf
 
 
 CSV_COLUMN_NAMES = ['node0', 'node1', 'node2', 'node3', 'node4', 'node5', \
-                    'node6', 'node7', 'node8', 'node9', 'node10', 'node11' \
-                    'node12', 'node13', 'node14', 'node15', 'node16', 'rank']
+                    'node6', 'node7', 'node8', 'node9', 'node10', 'node11', \
+                    'node12', 'node13', 'node14', 'node15', 'rank']
 
 SPECIES = ['Bad', 'Same', 'Good']
 
 def load_data(y_name='rank'):
-    """Returns the iris dataset as (train_x, train_y), (test_x, test_y)."""
+    """Returns the config dataset as (train_x, train_y), (test_x, test_y)."""
     train_path, test_path = 'config_train.csv', 'config_test.csv' 
 
     train = pd.read_csv(train_path, names=CSV_COLUMN_NAMES, header=0)
@@ -28,6 +28,8 @@ def load_data(y_name='rank'):
 
 
 def train_input_fn(features, labels, batch_size):
+#    print('Features : \n' , features)
+#    print('Labels: \n' , labels)
     """An input function for training"""
     # Convert the inputs to a Dataset.
     dataset = tf.data.Dataset.from_tensor_slices((dict(features), labels))

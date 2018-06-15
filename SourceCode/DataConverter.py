@@ -28,11 +28,11 @@ def ParseLine(masterFile,line):
 def ClassifyByTime(time):
     time = float(time)
     if(time > 2.8856e-6):
-        classification = 'Bad'
+        classification = '0'
     elif (time < 2.8856e-6):
-        classification = 'Good'
+        classification = '2'
     else:
-        classification = 'Same'
+        classification = '1'
 #    print(time,classification)
     return classification
 
