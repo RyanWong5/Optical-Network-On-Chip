@@ -22,8 +22,8 @@ import tensorflow as tf
 import config_data
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--batch_size', default=100, type=int, help='batch size')
-parser.add_argument('--train_steps', default=10000, type=int,
+parser.add_argument('--batch_size', default=200, type=int, help='batch size')
+parser.add_argument('--train_steps', default=10000000, type=int,
                     help='number of training steps')
 
 def main(argv):
@@ -41,7 +41,7 @@ def main(argv):
     classifier = tf.estimator.DNNClassifier(
         feature_columns=my_feature_columns,
         # Two hidden layers of 10 nodes each.
-        hidden_units=[10, 10, 10],
+        hidden_units=[15, 15, 15, 15],
         # The model must choose between 3 classes.
         n_classes=3)
 

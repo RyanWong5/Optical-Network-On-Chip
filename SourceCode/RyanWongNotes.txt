@@ -52,7 +52,15 @@ Week 3:
     Activation Functions: Either ReLu ( Hot right now) or sigmoid (non-linear)
     
     BUG: When Distributing files the files are not properly being executed
+        Fixed 6/16
 
+Week 4:
+    Goals:
+        Complete Time based analysis:
+            1) Using Wait Time
+            2) Using Communication Time (Non-Waiting)
+        Continue to train and test NN
+        Generate larger data and training sets
     
 
 
