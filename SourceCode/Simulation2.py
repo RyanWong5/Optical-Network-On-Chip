@@ -442,7 +442,7 @@ for times in range(0, numberOfConfigurations):
 
 
         t += 1 #Add another clock cycle
-'''
+#'''
     #Show results
     print 'Finished test file: ' + str(config.logFile)
 #print the configuration so this can be sent to an NN
@@ -454,9 +454,8 @@ for times in range(0, numberOfConfigurations):
     tProgram = time.time()-startTime
     print 'Time for Program: ' + str(tProgram) + '\n\n'
     writeForNeuralNet(theConfiguration,totalTime)
-#    print("Completed Simulation", str(sys.argv[2]))
     print '----------------------------------------------------------'
-'''
+#'''
 
 raise SystemExit
 

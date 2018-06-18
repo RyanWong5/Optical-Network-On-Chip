@@ -82,7 +82,7 @@ def main():
             #Which configuration file to process - configured to be: ParallelFiles/ParallelConfigurations-$(COUNT)-node.txt
             configName = "ParallelFiles/ParallelConfigurations-" + \
                 str(configCount) + "-" + str(i) + ".txt" 
-            print("SEND: " , i, str(configName))
+#            print("SEND: " , i, str(configName))
             data = [str(sys.argv[1]), str(configName)]
 #also needs to be changed to blocking
             req = comm.send(data,dest = i , tag = i)
@@ -96,7 +96,7 @@ def main():
         #Get data this needs to be changed to blocking
         data = comm.recv(source = 0, tag=rank)
 #        data =req.wait()
-        print("Recv: " , rank , data)
+#        print("Recv: " , rank , data)
         lFile = data[0]
         cFile = data[1]
         #Form the argument list to to execute in the subprocess.
