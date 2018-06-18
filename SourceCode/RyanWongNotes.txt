@@ -44,5 +44,15 @@ Week 3:
     Simulation Ran for 60k tests, lowest latency I could find was 2.5xxx;
     Will need to run a statistical analysis on it, to get min max med etc. 
     This should be sufficient to get our basic NN started
+    
+    Need to convert my output file into a tensorflow .csv
+        Will be implemented using DataConverter.py which will fuse all the values into one, and quantize the value good/bad/etc.
+    
+    DNN Classifier - will try 2 hidden layers of 16 nodes ea
+    Activation Functions: Either ReLu ( Hot right now) or sigmoid (non-linear)
+    
+    BUG: When Distributing files the files are not properly being executed
+
+    
 
 

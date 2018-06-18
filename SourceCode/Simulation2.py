@@ -16,6 +16,7 @@ print("argument lengths: " , len(sys.argv))
 print("sys0: " + str(sys.argv[0]))
 print("sys1: " + str(sys.argv[1])) 
 print("sys2: " + str(sys.argv[2]))
+print("syslen: " + str(len(sys.argv)))
 print()
 print()
 """
@@ -90,7 +91,6 @@ def readConfigurations(logFile):
             for j in networkNodes:
                 networkLine.append(int(float(j)))
             allConfigurations.append(networkLine)
-            
     return allConfigurations
 
 
@@ -133,7 +133,7 @@ def writeResults(outputName,dataLine):
 		outName = 'defaultConnnectivitydata.out'
 	else:
 		configBase = gatherConfigBaseName(sys.argv[2])
-		outName = "ConfigurationAnalysis/" + configBase +'-connectivity-' + str(id) +'.out'
+		outName = "ConfigurationAnalysis/" + configBase +'-connectivity.out'
 	with open(outName,"a") as outFile:
 		outFile.write(str(dataLine.calcConnectivity())+'\n')
 
@@ -148,13 +148,12 @@ def writeForNeuralNet(config,runtime):
 		classification = "good"
 	else: 
 		classification = "same"
-	id = readID()
 	#Default configOut or Take the command line argument
 	if (theConfigurationFile == ''):
 		outName = 'defaultOutdata.out'
 	else:
 		configBase = gatherConfigBaseName(sys.argv[2])
-		outName = "ConfigurationAnalysis/" + configBase +'-Data-'+ str(id) +'.out'
+		outName = "ConfigurationAnalysis/" + configBase +'-Data.out'
 	with open(outName,"a") as outFile:
 		outFile.write(str(config) + ';' + str(runtime)+ ';' + classification + "\n")
 		
@@ -180,9 +179,9 @@ go = False
 #Set to 1 to run one configuration that you want (change the code after this line)
 #Set to any higher number to run it as many times as the number you entered with random configs each time
 if (len(sys.argv) ==1):
-	numberOfConfigurations = 1 #Set how many different configurations you want to test
+	useConfigFile = False #Set how many different configurations you want to test
 else:
-	numberOfConfigurations = 0 #if a config file is given, then use it. else use the default config
+	useConfigFile = True  #if a config file is given, then use it. else use the default config
 #Set each core's position
 """zeroPosition = 0
 onePosition = 14
@@ -201,27 +200,27 @@ thirteenPosition = 3
 fourteenPosition = 13
 fifteenPosition = 2"""
 
-zeroPosition = 0
-onePosition = 1
-twoPosition = 2
-threePosition = 3
-fourPosition = 4
-fivePosition = 5
-sixPosition = 6
-sevenPosition = 7
-eightPosition = 8
-ninePosition = 9
-tenPosition = 10
-elevenPosition = 11
-twelvePosition = 12
-thirteenPosition = 13
-fourteenPosition = 14
-fifteenPosition = 15
+zeroPosition = 15
+onePosition = 14
+twoPosition = 13
+threePosition = 12
+fourPosition = 11
+fivePosition = 10
+sixPosition = 9
+sevenPosition = 8
+eightPosition = 7
+ninePosition = 6
+tenPosition = 5
+elevenPosition = 4
+twelvePosition = 3
+thirteenPosition = 2
+fourteenPosition = 1
+fifteenPosition = 0
 
 
 #If there is a configuration file then use it
 #Edit to have and rather than '&' -RW
-if (config.configurationFile != '') and (numberOfConfigurations == 0):
+if (config.configurationFile != '') and (useConfigFile == True):
     differentConfigurations = readConfigurations(theConfigurationFile) #get all the configurations
     numberOfConfigurations = len(differentConfigurations) #run as many times as there are configurations
     go = True
@@ -238,7 +237,7 @@ for times in range(0, numberOfConfigurations):
     print 'ListLength:' + str(listLen) + '\n' + '\n' + '\n'
 
     #If you only wanted to run one specific configuration
-    if (numberOfConfigurations == 1):
+    if (useConfigFile == False):
         #Set the configuration
         theConfiguration = [zeroPosition, onePosition, twoPosition, threePosition, fourPosition,
                             fivePosition, sixPosition, sevenPosition, eightPosition, ninePosition,

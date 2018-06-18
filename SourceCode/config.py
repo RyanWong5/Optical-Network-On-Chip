@@ -30,18 +30,17 @@ OCC = 40 #GHz (Change at will)
 ECC = 2 #GHz (Change at will)
 packetSize = 8*(10**9) #bits
 
-
 ##EDIT HERE FOR CONFIGURATIONS -- this should eventually be made into arguments -RW
 #print ("Enter log file")
 #print ("Len: ",len(sys.argv))
 #if given sys args use sys args over default -RW
-if (len(sys.argv) == 3):
-	logFile=sys.argv[1][25:]
-	configurationFile=sys.argv[2]
+if (len(sys.argv) >= 3):
+    logFile=sys.argv[1][25:]
+    configurationFile=sys.argv[2]
 	#configurationFilePath=sys.argv[2]
 	#configruationSplit = configurationFilePath.split("/")
 	#configurationFile = configruationSplit[-1]
-	print(configurationFile)
+#    print("the config file: ", configurationFile)
 else:
 	logFile = 'flow_freqmine100#2.txt'#'flow_dedup.log'#'test_walston_004.log' the log file that will be tested
 	configurationFile = 'AllConfigurations-5.txt' #The file with only configurations in it.
