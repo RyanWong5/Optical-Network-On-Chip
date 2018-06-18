@@ -232,9 +232,9 @@ for times in range(0, numberOfConfigurations):
     config.activeReq = convXYtoNode(logFile)
     listLen = len(config.activeReq) #How many lines of data there are to be processed
 
-    #Print the file info
+    """#Print the file info
     print 'Running benchmark ' + logFile + '\n'
-    print 'ListLength:' + str(listLen) + '\n' + '\n' + '\n'
+    print 'ListLength:' + str(listLen) + '\n' + '\n' + '\n' """
 
     #If you only wanted to run one specific configuration
     if (useConfigFile == False):
@@ -442,7 +442,7 @@ for times in range(0, numberOfConfigurations):
 
 
         t += 1 #Add another clock cycle
-
+'''
     #Show results
     print 'Finished test file: ' + str(config.logFile)
 #print the configuration so this can be sent to an NN
@@ -454,8 +454,9 @@ for times in range(0, numberOfConfigurations):
     tProgram = time.time()-startTime
     print 'Time for Program: ' + str(tProgram) + '\n\n'
     writeForNeuralNet(theConfiguration,totalTime)
+#    print("Completed Simulation", str(sys.argv[2]))
     print '----------------------------------------------------------'
-
+'''
 
 raise SystemExit
 
