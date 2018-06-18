@@ -21,7 +21,6 @@ print()
 print()
 """
 
-
 #Code to take the thread ID so the val can be fused later
 def readID():
 	if(len(sys.argv) > 3):
