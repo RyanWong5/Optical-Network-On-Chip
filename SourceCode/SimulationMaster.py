@@ -104,12 +104,13 @@ def main():
         pythonArg = ['python', 'Simulation2.py',str(logfile), str(configFile), str(rank)]
 #        print("being T" , rank, logfile, configFile, rank)
         subprocess.call(pythonArg, shell=False)
-        comm.Send('',dest = 0 , tag = nodeCount + rank)
+        data = ''
+        comm.send(data,dest = 0 , tag = nodeCount + rank)
 
 
     if (rank == 0):
         for nodeCollect in range (1,nodeCount):
-            comm.Recv(data,source = nodeCollect, tag = nodeCount + rank)
+            data = comm.recv(data,source = nodeCollect, tag = nodeCount + rank)
         
 
          
