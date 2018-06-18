@@ -7,7 +7,7 @@ import sys
 import os
 
 #Debugging code for parallelization argument passing
-#"""
+"""
 print("INSIDE SIM: " )
 print()
 print()
@@ -18,7 +18,7 @@ print("sys1: " + str(sys.argv[1]))
 print("sys2: " + str(sys.argv[2]))
 print()
 print()
-#"""
+"""
 
 #Code to take the thread ID so the val can be fused later
 def readID():
