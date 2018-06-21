@@ -64,6 +64,7 @@ def main():
 
     comm = MPI.COMM_WORLD
     nodeCount = comm.Get_size()
+#    print(nodeCount)
     rank = comm.Get_rank()
     #Get the current dir -> and the relative simulation configurations
     #Always Name Configuration folder as Configurations/
@@ -81,32 +82,32 @@ def main():
             #Which configuration file to process - configured to be: ParallelFiles/ParallelConfigurations-$(COUNT)-node.txt
             configName = "ParallelFiles/ParallelConfigurations-" + \
                 str(configCount) + "-" + str(i) + ".txt" 
-            print(configName)
-            data = [str(sys.argv[1]), configName]
-            req = comm.isend(data,dest = i , tag = i)
-
+#            print("SEND: " , i, str(configName))
+            data = [str(sys.argv[1]), str(configName)]
+#also needs to be changed to blocking
+            req = comm.send(data,dest = i , tag = i)
         #Do master thread's work
         pythonArg = ['python', 'Simulation2.py',str(sys.argv[1]), \
             str("ParallelFiles/ParallelConfigurations-" + \
             str(configCount) + "-0.txt"), str(rank)]
-        print("being T" , rank)
         subprocess.call(pythonArg, shell=False)
     #slave threads
     elif(rank != 0):
-        #Get data
-        req = comm.irecv(source = 0, tag=rank)
-        data =req.wait()
-        logfile = data[0]
-        configFile = data[1]
+        #Get data this needs to be changed to blocking
+        data = comm.recv(source = 0, tag=rank)
+#        data =req.wait()
+#        print("Recv: " , rank , data)
+        lFile = data[0]
+        cFile = data[1]
         #Form the argument list to to execute in the subprocess.
         #Set shell to false since using user defined arugments
         #rank arg passed for Identification
-        pythonArg = ['python', 'Simulation2.py',str(logfile), str(configFile), str(rank)]
+        pythonArg = ['python', 'Simulation2.py',str(lFile), str(cFile), str(rank)]
 #        print("being T" , rank, logfile, configFile, rank)
         subprocess.call(pythonArg, shell=False)
         data = []
         comm.send(data,dest = 0 , tag = nodeCount + rank)
-        print(rank, nodeCount + rank)
+#        print(rank, nodeCount + rank)
 
     if(rank == 0):
         for nodeCollect in range (1,nodeCount):
