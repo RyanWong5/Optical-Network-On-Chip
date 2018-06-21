@@ -1,5 +1,7 @@
 
 
+Default Config TF.DNN.estimator
+ReLU activation
 
 Setup: 
 8L x 15N
@@ -58,7 +60,198 @@ Batch: 500
 Steps: 100000000
 Train: 60k
 Test: 600
-65.5%
+63.3%
+
+Setup 8:
+2L x 15
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+66.3
+
+Setup 9
+2L x 15
+Batch: 100
+Steps: 50000
+Train: 60k
+Test: 600
+64% / 63.3%
+
+Setup 10:
+2L x 15
+Batch: 100
+Steps: 20000
+Train: 60k
+Test: 600
+64.3 / 65.2?
+
+Setup 11:
+1L x 15
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+63.7%
+
+Setup 11:
+1L x 15
+Batch: 100
+Steps: 20000
+Train: 60k
+Test: 600
+65.7%
+
+Setup 11:
+1L x 15
+Batch: 100
+Steps: 50000
+Train: 60k
+Test: 600
+66.3%
+
+Setup 11:
+1L x 15
+Batch: 200
+Steps: 50000
+Train: 60k
+Test: 600
+65.6%
+
+Setup 11:
+1L x 15
+Batch: 100
+Steps: 100000
+Train: 60k
+Test: 600
+66.2%
+
+Setup 11:
+1L x 15
+Batch: 100
+Steps: 500000
+Train: 60k
+Test: 600
+65%
+
+Setup 11:
+1L x 15
+Batch: 100
+Steps: 1000000
+Train: 60k
+Test: 600
+64.5%
+
+Config Change: Set Activation function to Sigmoid in lieu of ReLU
+Setup 1:
+1L x 15
+Batch: 100
+Steps: 1000
+Train: 60k
+Test: 600
+64.3%
+
+Setup 2:
+1L x 15
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+63.5
+
+Setup 3:
+2L x 15
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+64.7
+
+Setup 4:
+[50,25]
+Batch: 100
+Steps: 1000
+Train: 60k
+Test: 600
+65.8
+
+Setup 5:
+[50,25]
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+65%
+
+Setup 6:
+[50, 40, 30]
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+65
+
+Setup 6:
+[50, 40, 30, 20]
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+64.8%
+
+Setup 6:
+[50]
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+65.33%
+
+Setup 6:
+[400,400]
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+64.5
+
+setup N:
+[100, 100]
+Batch: 100
+Steps: 10000
+Train: 60k
+Test: 600
+65.5
 
 
+setup N:
+[100, 100]
+Batch: 200
+Steps: 100000
+Train: 60k
+Test: 600
+61.3%
 
+setup N:
+[20, 10]
+Batch: 200
+Steps: 100000
+Train: 60k
+Test: 600
+64.8
+
+setup N:
+[20, 10]
+Batch: 200
+Steps: 1000000
+Train: 60k
+Test: 600
+63.8%
+
+setup N:
+[20, 10]
+Batch: 100
+Steps: 2000000
+Train: 60k
+Test: 600
+66%
