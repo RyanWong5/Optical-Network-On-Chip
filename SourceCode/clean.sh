@@ -35,3 +35,4 @@ fi
 mv $MOVEDIR1 $OLDFILES 2>/dev/null
 mv $MOVEDIR2 $OLDFILES 2>/dev/null
 
+rm AnalyzedLog.txt 2>/dev/null

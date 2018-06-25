@@ -4,3 +4,5 @@ OldFiles/*
 Output/*
 ConfigurationAnalysis/*
 DataStorage/*
+TestFile.txt
+AnalyzedLog.txt
