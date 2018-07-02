@@ -62,5 +62,11 @@ Week 4:
         Continue to train and test NN
         Generate larger data and training sets
     
+    Explored Logfile preprocessing:
+        1) From flow_freq100#2.txt -> It seems like there are many tx that com              with node 1, which then may force us to look more closely at time
+            otherwise 1 is a bottleneck that can not be averted
+        2) Maybe use a greedy assignment placement first?
+        3) Compare with past project
+
 
 

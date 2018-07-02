@@ -120,9 +120,10 @@ def generateKey(nodeCount):
     return key
 
 	
-	#Added connectivity feature - RW - to be used lated for statistical analysis
+	#Added connectivity feature - RW - to be used later for statistical analysis
 	#Writes line to file every loop
 	#ID refers to proc ID - used when distributing nodes
+    #Generates the simulation log and connectivity
 def writeResults(outputName,dataLine):
     #S,  D,  V,  Time Received, Time Started, Time Ended, Wait Time, Cost, ? ,Direction
     with open("Output/"+ str(outputName) + '-' + (str(times) + ".txt"),"a") \
@@ -298,9 +299,9 @@ for times in range(0, numberOfConfigurations):
     outputName =  procOutName(sys.argv[2])
 
     #Write the information of the file
-    with open("Output/" + str(outputName)+'-'+ (str(times) + ".txt"),"a") as resultFile:
-        resultFile.write("\n" + str(times) + "\n" + str(logFile) + "\n" + str(listLen)
-                         + "\n" + str(theConfiguration) + "\n")        
+#    with open("Output/" + str(outputName)+'-'+ (str(times) + ".txt"),"a") as resultFile:
+#        resultFile.write("\n" + str(times) + "\n" + str(logFile) + "\n" + \
+#                 str(listLen) + "\n" + str(theConfiguration) + "\n")        
     
     t = 0 #Monitor optical clock Cycles
     canSchedule = False #Monitor if there is room for the request
@@ -327,7 +328,7 @@ for times in range(0, numberOfConfigurations):
                     index = config.activeReq.index(requests) #Find the request in the actual list
                     config.activeReq[index].set_endTime(t) #After full trasmition (w/o OccToEcc conversion)
                     config.activeReq[index].set_waitTime()
-                    writeResults(outputName,config.activeReq[index]) #Write all the info of the data in the file
+#                    writeResults(outputName,config.activeReq[index]) #Write all the info of the data in the file
                     config.activeReq[index].reqProcessing() #Remove the request
                     activeRequests.remove(requests) #Remove the request from the other list
                     sourceNodeTracker.pop(index) #Remove the source node of this data from the list

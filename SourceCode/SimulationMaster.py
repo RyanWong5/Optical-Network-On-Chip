@@ -20,12 +20,12 @@ import subprocess
 def partitionWork(inFile, nodes):
     configFile = inFile.split("-")
     configCount = configFile[1][:-4]
-    print('Config Count: ', configCount, 'Node Count: ', nodes)
+#    print('Config Count: ', configCount, 'Node Count: ', nodes)
     #eachDivided file will get even number of nodes
     #if configurations/nodes != even number, distribute modulus of them
     eachWork = int(int(configCount) / nodes)
     totalRemainder = int(int(configCount) % nodes)
-    print(eachWork, totalRemainder)
+#    print(eachWork, totalRemainder)
     distNode = 0
     internalWork = eachWork
     internalRemainder = totalRemainder
