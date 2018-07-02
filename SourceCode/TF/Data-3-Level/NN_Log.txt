@@ -255,3 +255,11 @@ Steps: 2000000
 Train: 60k
 Test: 600
 66%
+
+setup N:
+[20, 10]
+Batch: 200
+Steps: 10000000
+Train: 60k
+Test: 600
+65.3

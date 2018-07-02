@@ -27,12 +27,16 @@ def ParseLine(masterFile,line):
 #Header file
 def ClassifyByTime(time):
     time = float(time)
-    if(time > 2.8856e-6):
+    if(time > 2.6e-6):
         classification = '0'
-    elif (time < 2.8856e-6):
-        classification = '2'
-    else:
+    elif (time < 2.8e-6):
         classification = '1'
+    elif (time < 3.0e-6):
+        classification = '2'
+    elif (time < 3.2e-6):
+        classification = '3'
+    else:
+        classification = '4'
 #    print(time,classification)
     return classification
 
@@ -42,7 +46,7 @@ def GenHeader(masterFile,count):
     #Different Classifications can be added in here" - Naively we will use 
     #{Bad, Same, Good} - to specify relation to the in order ring config
     #Append new line at the end of header
-    masterFile.write('Bad,Same,Good \r\n')
+    masterFile.write('VeryGood,Good,Average,Bad,VeryBad' \r\n')
 
 
 #This Function reads all the files in the list addFile, and fuseses the data 
@@ -54,6 +58,7 @@ def ConvertFile(masterFile, addFile):
             for line in read:
                 line = line.split(';')
                 #write the config list- It is possible that the internal spaces
+                print(line)
                 ParseLine(masterFile,line[0])
                 #Parse the time to see what level of classification it is
                 classification = ClassifyByTime(line[1])
@@ -75,7 +80,7 @@ def main():
     
     #for all the output files in the folder, add them to a list to be processed
     for file in os.listdir(folder):
-        if fnmatch.fnmatch(file, 'ParallelConfigurations-*-*-Data*'):
+        if fnmatch.fnmatch(file, 'ParallelConfigurations-*Data*'):
             files.append(str(folder) + '/' + str(file))
         
 

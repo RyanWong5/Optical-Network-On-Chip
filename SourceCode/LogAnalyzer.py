@@ -107,13 +107,9 @@ def AnalyzeTraffic_Ring(transactions):
 #Print the sorted values to a text file    
 def DumpAnalysis(analyzedLog):
     with open('AnalyzedLog.txt' , 'a') as output:
-        for pair,tx in sorted(analyzedLog.items(), key=lambda x: x[1]):
+        for pair,tx in sorted(analyzedLog.items(), key=lambda key: key[1]):
 #            print (pair,tx)
             output.write(str(pair) + ' : ' +  str(tx) + '\n') 
-
-        
-    
-
 
 
 def main():

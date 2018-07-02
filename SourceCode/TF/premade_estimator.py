@@ -24,7 +24,7 @@ import config_data
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--batch_size', default=100, type=int, help='batch size')
-parser.add_argument('--train_steps', default=2000000, type=int,
+parser.add_argument('--train_steps', default=10000, type=int,
                     help='number of training steps')
 
 def main(argv):
@@ -42,11 +42,11 @@ def main(argv):
     classifier = tf.estimator.DNNClassifier(
         feature_columns=my_feature_columns,
         # Two hidden layers of 10 nodes each.
-        hidden_units=[20, 10 ],
+        hidden_units=[15, 15 ],
         #Specify Activation functions
         activation_fn = tf.nn.sigmoid,
         # The model must choose between 3 classes.
-        n_classes=3)
+        n_classes=5)
         # Specify a place to save the model
 #        model_dir = os.getcwd()+'/ModelSR')
 
