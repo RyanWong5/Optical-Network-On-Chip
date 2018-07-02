@@ -13,7 +13,8 @@ import os
 import fnmatch
 import sys
 
-
+MIN_TIME = float('+inf')
+MAX_TIME = float('-inf')
 
 #write a config line to file - removes spaces
 def ParseLine(masterFile,line):
@@ -28,13 +29,19 @@ def ParseLine(masterFile,line):
 #Header file
 def ClassifyByTime(time):
     time = float(time)
-    if(time < 2.6e-6):
+    global MAX_TIME 
+    global MIN_TIME
+    if time < MIN_TIME:
+        MIN_TIME = time
+    if time > MAX_TIME:
+        MAX_TIME = time 
+    if(time < 2.7e-6):
         classification = '0'
-    elif (time < 2.8e-6):
+    elif (time < 2.85e-6):
         classification = '1'
-    elif (time < 3.0e-6):
+    elif (time < 2.95e-6):
         classification = '2'
-    elif (time < 3.2e-6):
+    elif (time < 3.05e-6):
         classification = '3'
     else:
         classification = '4'
@@ -85,8 +92,6 @@ def main():
         if fnmatch.fnmatch(file, 'ParallelConfigurations-*Data*'):
             files.append(str(folder) + '/' + str(file))
         
-    print(files)
-
     #If there are no generated datafiles from the simulation, or none were found
     #Exit the converter
     if(len(files)==0):
@@ -108,6 +113,10 @@ def main():
     #Build the CSV
     ConvertFile(masterFile,files)
     
+    #Getting min and max times
+    print ("Max Time: " , str(MAX_TIME))
+    print ("Min Time: " , str(MIN_TIME))
+ 
     
     
     
