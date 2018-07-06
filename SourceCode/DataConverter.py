@@ -35,16 +35,12 @@ def ClassifyByTime(time):
         MIN_TIME = time
     if time > MAX_TIME:
         MAX_TIME = time 
-    if(time < 2.7e-6):
+    if(time < 2.8e-6):
         classification = '0'
-    elif (time < 2.85e-6):
+    elif (time < 3.0e-6):
         classification = '1'
-    elif (time < 2.95e-6):
-        classification = '2'
-    elif (time < 3.05e-6):
-        classification = '3'
     else:
-        classification = '4'
+        classification = '2'
 #    print(time,classification)
     return classification
 
@@ -54,7 +50,8 @@ def GenHeader(masterFile,count):
     #Different Classifications can be added in here" - Naively we will use 
     #{Bad, Same, Good} - to specify relation to the in order ring config
     #Append new line at the end of header
-    masterFile.write('VeryGood,Good,Average,Bad,VeryBad \r\n')
+#    masterFile.write('VeryGood,Good,Average,Bad,VeryBad \r\n')
+    masterFile.write('Good,Average,Bad \r\n')
 
 
 #This Function reads all the files in the list addFile, and fuseses the data 
