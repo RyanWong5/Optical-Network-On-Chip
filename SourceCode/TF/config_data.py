@@ -17,7 +17,8 @@ SPECIES = ['Good', 'Average', 'Bad']
 
 def load_data(y_name='rank'):
     """Returns the config dataset as (train_x, train_y), (test_x, test_y)."""
-    train_path, test_path = 'config_train.csv', 'config_test.csv' 
+#    train_path, test_path = 'config_train.csv', 'config_test.csv' 
+    train_path, test_path = 'Data-3-Level/config-data-60000.csv', 'Data-3-Level/config-data-600.csv' 
 
     train = pd.read_csv(train_path, names=CSV_COLUMN_NAMES, header=0)
     train_x, train_y = train, train.pop(y_name)

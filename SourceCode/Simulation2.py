@@ -75,7 +75,7 @@ def convXYtoNode(logFile):
                 newRow = [(row[0] - 1) * 8 + (7 - row[1]), (row[2] - 1) * 8 + row[3]]   
             newRow.extend(row[4:6])
             newRow.append(row[6]*config.EccToOcc)
-            #print (newRow)
+#            print (newRow)
             newBenchmark.append(request(newRow))
     requestsHolder = newBenchmark
             
@@ -184,23 +184,6 @@ if (len(sys.argv) ==1):
 else:
 	useConfigFile = True  #if a config file is given, then use it. else use the default config
 #Set each core's position
-"""zeroPosition = 0
-onePosition = 14
-twoPosition = 10
-threePosition = 5
-fourPosition = 11
-fivePosition = 9
-sixPosition = 1
-sevenPosition = 8
-eightPosition = 7
-ninePosition = 12
-tenPosition = 6
-elevenPosition = 4
-twelvePosition = 15
-thirteenPosition = 3
-fourteenPosition = 13
-fifteenPosition = 2"""
-
 zeroPosition = 15
 onePosition = 14
 twoPosition = 13
