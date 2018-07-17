@@ -23,7 +23,7 @@ import config_data
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--batch_size', default=100, type=int, help='batch size')
-parser.add_argument('--train_steps', default=50000 , type=int,
+parser.add_argument('--train_steps', default= 500000 , type=int,
                     help='number of training steps')
 
 def main(argv):
@@ -35,20 +35,20 @@ def main(argv):
     my_feature_columns = []
     for key in train_x.keys():
         my_feature_columns.append(tf.feature_column.numeric_column(key=key))
-    
+
 
     # Build 2 hidden layer DNN with 10, 10 units respectively.
     classifier = tf.estimator.DNNClassifier(
         feature_columns=my_feature_columns,
         # Two hidden layers of 10 nodes each.
-        hidden_units=[ 1000,1000],
+        hidden_units=[5000, 5000, 5000, 5000 ],
         #Specify Activation functions
-        #activation_fn = tf.nn.sigmoid,
+        activation_fn = tf.nn.sigmoid,
         # The model must choose between 3 classes.
         n_classes=3)
         # Specify a place to save the model
 #        model_dir = os.getcwd()+'/ModelSR')
-
+    
 
     # Train the Model.
     classifier.train(
@@ -63,7 +63,7 @@ def main(argv):
 
     print('\nTest set accuracy: {accuracy:0.3f}\n'.format(**eval_result))
 
-#    exit()
+    exit()
     # Generate predictions from the model
     expected = ['Average', 'Bad', 'Good']
     predict_x = {
