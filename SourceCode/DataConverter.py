@@ -12,6 +12,7 @@ configurations will NOT be preserved
 import os
 import fnmatch
 import sys
+import copy
 
 #MIN_TIME = float('+inf')
 #MAX_TIME = float('-inf')
@@ -30,15 +31,24 @@ def GenPriorityList():
     global FULL_LOG
     global MIN_TIMES
     global MAX_TIMES
-    MIN_TIMES.append(FULL_LOG[0:5])
-    MAX_TIMES.append(FULL_LOG[-5:]) 
+    MIN_TIMES = copy.deepcopy(FULL_LOG[0:5])
+    MAX_TIMES = copy.deepcopy(FULL_LOG[-5:])
+
+#
+#    print ('type of min_times: ', type(MIN_TIMES))
+#    print ('size of min_times: ', len(MIN_TIMES))
+#    for i in MIN_TIMES:
+#        print(i)
     
-    with open('Timings.out','w++') as outfile:
+    with open('Timings.out','w') as outfile:
         for each in MIN_TIMES:
             outfile.write(str(each) + '\n')
         for each in MAX_TIMES:
             outfile.write(str(each) + '\n')
 
+    with open('FullLog.out', 'w') as configlog:
+        for each in FULL_LOG:
+            configlog.write(str(each) + '\n')
 
 #2.8856e-6 is the base ring in order 0-16 time 
 #Change the classification levels here, also change the classifications
