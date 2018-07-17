@@ -13,8 +13,12 @@ import os
 import fnmatch
 import sys
 
-MIN_TIME = float('+inf')
-MAX_TIME = float('-inf')
+#MIN_TIME = float('+inf')
+#MAX_TIME = float('-inf')
+
+MIN_TIMES = []
+MAX_TIMES = []
+FULL_LOG = []
 
 #write a config line to file - removes spaces
 def ParseLine(masterFile,line):
@@ -22,6 +26,18 @@ def ParseLine(masterFile,line):
     line = ','.join(line)
     masterFile.write(str(line)[1:-1])
    
+def GenPriorityList():
+    global FULL_LOG
+    global MIN_TIMES
+    global MAX_TIMES
+    MIN_TIMES.append(FULL_LOG[0:5])
+    MAX_TIMES.append(FULL_LOG[-5:]) 
+    
+    with open('Timings.out','w++') as outfile:
+        for each in MIN_TIMES:
+            outfile.write(str(each) + '\n')
+        for each in MAX_TIMES:
+            outfile.write(str(each) + '\n')
 
 
 #2.8856e-6 is the base ring in order 0-16 time 
@@ -29,12 +45,6 @@ def ParseLine(masterFile,line):
 #Header file
 def ClassifyByTime(time):
     time = float(time)
-    global MAX_TIME 
-    global MIN_TIME
-    if time < MIN_TIME:
-        MIN_TIME = time
-    if time > MAX_TIME:
-        MAX_TIME = time 
     if(time < 2.8e-6):
         classification = '0'
     elif (time < 3.0e-6):
@@ -57,20 +67,23 @@ def GenHeader(masterFile,count):
 #This Function reads all the files in the list addFile, and fuseses the data 
 #into a single csv
 def ConvertFile(masterFile, addFile):
+    global FULL_LOG
     #for every file in fileList, read it line by line and add them to the master
     for file in addFile:
         with open(file,'r') as read:
             for line in read:
                 line = line.split(';')
                 #write the config list- It is possible that the internal spaces
-#                print(line)
                 ParseLine(masterFile,line[0])
+                #Create a tuple of config,time, and then sort over time
+                con_time = (line[0],float(line[1]))
+                FULL_LOG.append(con_time)
                 #Parse the time to see what level of classification it is
                 classification = ClassifyByTime(line[1])
                 masterFile.write(','+str(classification))
                 #new line at the end of each entry
-                masterFile.write('\r\n')
-    
+                masterFile.write('\n')
+    FULL_LOG = sorted(FULL_LOG, key = lambda config:config[1])
 
 def main():
     #Keep a list of the output configurations that need to be fused
@@ -109,16 +122,8 @@ def main():
     GenHeader(masterFile,numberOfConfigs)
     #Build the CSV
     ConvertFile(masterFile,files)
+    GenPriorityList()
     
-    #Getting min and max times
-    print ("Max Time: " , str(MAX_TIME))
-    print ("Min Time: " , str(MIN_TIME))
- 
-    
-    
-    
-    
-
 
 if __name__ == '__main__':
     main()

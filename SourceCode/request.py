@@ -8,9 +8,12 @@ class request:
         self.sourceNode     = theListOfInfo[0] #Source node of request
         self.destNode       = theListOfInfo[1] #Destination node of request
         self.sequenceNumber = theListOfInfo[2] #Sequence number of request
-        self.volume         = theListOfInfo[3] #Volume of request   
-        self.volumeTrack    = theListOfInfo[3] #Volume of request
-        volumeTrack         = theListOfInfo[3] #Volume of request
+        self.volume         = theListOfInfo[3] * \
+            config.volume #Volume of request 
+        self.volumeTrack    = theListOfInfo[3] * \
+            config.volume #Volume of request
+        volumeTrack         = theListOfInfo[3] * \
+            config.volume #Volume of request
         self.Received       = theListOfInfo[4]
         self.timeStamp      = theListOfInfo[4] + config.EccToOcc + config.checkAvailability #Time of request
         self.timeTrack      = theListOfInfo[4] #Time of request

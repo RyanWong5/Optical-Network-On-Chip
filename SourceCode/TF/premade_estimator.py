@@ -42,6 +42,7 @@ def main(argv):
         feature_columns=my_feature_columns,
         # Two hidden layers of 10 nodes each.
         hidden_units=[5000, 5000, 5000, 5000 ],
+#        hidden_units=[ 15,15],
         #Specify Activation functions
         activation_fn = tf.nn.sigmoid,
         # The model must choose between 3 classes.

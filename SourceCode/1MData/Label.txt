@@ -1,0 +1,9 @@
+Flow_Freqmine100#2.txt
+Configuration: 1M Configs
+Runtime - ~5 Hr on 288 Nodes
+
+
+Full Sim - Flow_freqmine - full
+Config: 1M config
+Success - Roughly 500k
+Runtime - Roughly 4days 2 hr
