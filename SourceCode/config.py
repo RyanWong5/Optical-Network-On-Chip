@@ -29,7 +29,7 @@ frequencies = 1 #Changes the number of loops that can be used to process request
 OCC = 40 #GHz (Change at will)
 ECC = 2 #GHz (Change at will)
 packetSize = 8*(10**9) #bits
-volume = 1 #Volume Factor, Change this at will as well
+volume = 250  #Volume Factor, Change this at will as well
 
 ##EDIT HERE FOR CONFIGURATIONS -- this should eventually be made into arguments -RW
 #print ("Enter log file")
