@@ -19,6 +19,7 @@ import copy
 
 MIN_TIMES = []
 MAX_TIMES = []
+AVG_TIMES = []
 FULL_LOG = []
 
 #write a config line to file - removes spaces
@@ -31,8 +32,11 @@ def GenPriorityList():
     global FULL_LOG
     global MIN_TIMES
     global MAX_TIMES
-    MIN_TIMES = copy.deepcopy(FULL_LOG[0:5])
-    MAX_TIMES = copy.deepcopy(FULL_LOG[-5:])
+    global AVG_TIMES
+    mid = len(FULL_LOG)/2
+    MIN_TIMES = copy.deepcopy(FULL_LOG[0:10])
+    AVG_TIMES = copy.deepcopy(FULL_LOG[mid:mid+10])
+    MAX_TIMES = copy.deepcopy(FULL_LOG[-10:])
 
 #
 #    print ('type of min_times: ', type(MIN_TIMES))
@@ -42,6 +46,8 @@ def GenPriorityList():
     
     with open('Timings.out','w') as outfile:
         for each in MIN_TIMES:
+            outfile.write(str(each) + '\n')
+        for each in AVG_TIMES:
             outfile.write(str(each) + '\n')
         for each in MAX_TIMES:
             outfile.write(str(each) + '\n')

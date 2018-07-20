@@ -38,7 +38,7 @@ def partitionWork(inFile, nodes):
                 str(configCount) + "-" + str(distNode) + ".txt","a") \
                 as distFile:
                 distFile.write(line)
-                print(distNode,line)
+#                print(distNode,line)
             internalWork -=1
 #always decrement the work since a line has been done
 #use extraLine as a flag to designate if an extraline has been added
