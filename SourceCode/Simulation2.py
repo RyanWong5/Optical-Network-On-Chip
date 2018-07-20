@@ -62,7 +62,6 @@ def convXYtoNode(logFile):
     ## To reconfigure the nodes, comment out these equations and uncomment the next section
     #(1 0) = 0; (1 1) = 1; (1 2) = 2; (1 3) = 3; (1 4) = 4; (1 5) = 5; (1 6) = 6; (1 7) = 7
     #(2 7) = 8; (2 6) = 9; (2 5) = 10; (2 4) = 11; (2 3) = 12; (2 2) = 13; (2 1) = 14; (2 0) = 15
-
     for row in benchmark:
         if (row[0] != 0) & (row[2] != 0):
             if (row[0] == 1) & (row[2] == 1):
@@ -75,10 +74,8 @@ def convXYtoNode(logFile):
                 newRow = [(row[0] - 1) * 8 + (7 - row[1]), (row[2] - 1) * 8 + row[3]]   
             newRow.extend(row[4:6])
             newRow.append(row[6]*config.EccToOcc)
-#            print (newRow)
             newBenchmark.append(request(newRow))
     requestsHolder = newBenchmark
-            
     return newBenchmark
 
 #Get a file of configurations and put it into a list

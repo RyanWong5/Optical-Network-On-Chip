@@ -37,6 +37,8 @@ volume = 250  #Volume Factor, Change this at will as well
 #if given sys args use sys args over default -RW
 if (len(sys.argv) >= 3):
     logFile=sys.argv[1][25:]
+#    logFile=logFile.split('/')
+#    logFile=logFile[-1]
     configurationFile=sys.argv[2]
 	#configurationFilePath=sys.argv[2]
 	#configruationSplit = configurationFilePath.split("/")
