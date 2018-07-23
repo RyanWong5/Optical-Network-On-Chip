@@ -33,7 +33,8 @@ def GenPriorityList():
     global MIN_TIMES
     global MAX_TIMES
     global AVG_TIMES
-    mid = len(FULL_LOG)/2
+#    mid = len(FULL_LOG)/2
+    mid = 10
     MIN_TIMES = copy.deepcopy(FULL_LOG[0:10])
     AVG_TIMES = copy.deepcopy(FULL_LOG[mid:mid+10])
     MAX_TIMES = copy.deepcopy(FULL_LOG[-10:])
@@ -47,8 +48,10 @@ def GenPriorityList():
     with open('Timings.out','w') as outfile:
         for each in MIN_TIMES:
             outfile.write(str(each) + '\n')
+        outfile.write('\n')
         for each in AVG_TIMES:
             outfile.write(str(each) + '\n')
+        outfile.write('\n')
         for each in MAX_TIMES:
             outfile.write(str(each) + '\n')
 
