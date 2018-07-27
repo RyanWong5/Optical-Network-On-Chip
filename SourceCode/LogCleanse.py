@@ -12,8 +12,15 @@ import sys
 def classify(partitions, tx, grouping):
     line = tx.split(' ')
     time = line[-1]
-    
+    entry = (int(time) // grouping) 
+    try:
+        partitions[entry] = partitions[entry] + 1 
+    except KeyError:
+        entry = entry - 1
+        print time
+        partitions[entry] = partitions[entry] + 1
 
+    
 
 
 def CleanLog(logfile):
@@ -53,12 +60,15 @@ def CleanLog(logfile):
     for i in range (0,5):
         partition[i] = 0
     
+    print partition
+    
     with open('NoMem-' + str(name),'a') as outfile:
         outfile.write(str(minTime) + ',' + str(maxTime) + '\n')
         for tx in txn:
             classify(partition,tx, grouping)
             outfile.write(tx + '\n')
 
+    print partition
 #For the ring configuration, maintain the same naming scheme as presented in 
 #Simulator2.py 
 #(1 0) = 0; (1 1) = 1; (1 2) = 2; (1 3) = 3; (1 4) = 4; 
