@@ -284,6 +284,13 @@ for times in range(0, numberOfConfigurations):
 #                 str(listLen) + "\n" + str(theConfiguration) + "\n")        
     
     t = 0 #Monitor optical clock Cycles
+#    print('Len of Active Requests: ' , len(config.activeReq))
+#    t = config.activeReq[0]
+#    print('Req 0 ' , config.activeReq[0].toString())
+#    print('Val: ' ,(config.activeReq[0].get_timeStamp()))
+#    print('Req 1 ' , config.activeReq[1].toString())
+#    print('Val: ' ,(config.activeReq[1].get_timeStamp()))
+#    t = config.activeReq[0].get_timeStamp() - 2
     canSchedule = False #Monitor if there is room for the request
     activeRequests = [] #Keeps a hold of the requests in the network
     sourceNodeTracker = [] #Keeps track of source nodes
@@ -308,7 +315,7 @@ for times in range(0, numberOfConfigurations):
                     index = config.activeReq.index(requests) #Find the request in the actual list
                     config.activeReq[index].set_endTime(t) #After full trasmition (w/o OccToEcc conversion)
                     config.activeReq[index].set_waitTime()
-#                    writeResults(outputName,config.activeReq[index]) #Write all the info of the data in the file
+                    writeResults(outputName,config.activeReq[index]) #Write all the info of the data in the file
                     config.activeReq[index].reqProcessing() #Remove the request
                     activeRequests.remove(requests) #Remove the request from the other list
                     sourceNodeTracker.pop(index) #Remove the source node of this data from the list

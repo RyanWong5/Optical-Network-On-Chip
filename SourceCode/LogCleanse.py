@@ -17,20 +17,26 @@ def classify(partitions, tx, grouping):
         partitions[entry] = partitions[entry] + 1 
     except KeyError:
         entry = entry - 1
-        print time
+#        print time
         partitions[entry] = partitions[entry] + 1
 
-    
-
+def CheckMem(line):
+    line = line.split()
+#If the X coordinate is a 0, it means an access to memory which exists only in
+#electrical domain - subject to change 
+    if (int(line[0]) == 0 or int(line[2]) == 0):
+        return True
+    else:
+        return False
 
 def CleanLog(logfile):
     name = logfile.split('/')
     path = name[:-1]
-    path.append('/')
-    path = ('/').join(path)
+#    path.append('/')
+#    path = ('/').join(path)
     name = name[-1]
     print(name)
-    print(path)
+#    print(path)
     txn = []
 #    minTime = +float('inf')
 #    maxTime = -float('inf')
@@ -38,36 +44,43 @@ def CleanLog(logfile):
     maxTime = -sys.maxsize - 1
     with open (logfile, 'r') as logfile:
         for line in logfile:
-            time, line = ReadLines(line)  
+            time, pLine = ReadLines(line)  
             if time != None:
                 time = int(time)
-#                print time, line
-            if line != None:
-                txn.append(line)
+            if pLine != None:
+                txn.append(pLine)
                 if time > maxTime:
                     maxTime = time
 #                    print(maxTime)
                 if time < minTime:
                     minTime = time
-                    
-        
-    print('len of txn: ' , len(txn))
+                with open('NoMem-' + str(name),'a') as outfile:  
+                    mem = CheckMem(pLine)
+                    if mem == False:
+                        outfile.write(line)
+
+#    print('len of txn: ' , len(txn))
     
     #Define how many sub logs do you want
-    numberOfPartitions = 5
+    numberOfPartitions = int(sys.argv[2])
     grouping = maxTime / numberOfPartitions
     partition ={}
-    for i in range (0,5):
+    for i in range (0, numberOfPartitions):
         partition[i] = 0
     
-    print partition
+    print 'Number of Partitions: ' , str(numberOfPartitions)
+    print 'Partition Size: ' + str(grouping)
+#    print partition
     
-    with open('NoMem-' + str(name),'a') as outfile:
-        outfile.write(str(minTime) + ',' + str(maxTime) + '\n')
-        for tx in txn:
-            classify(partition,tx, grouping)
-            outfile.write(tx + '\n')
 
+#    with open('NoMem-' + str(name),'a') as outfile:
+#        outfile.write(str(minTime) + ',' + str(maxTime) + '\n')
+    for tx in txn:
+        classify(partition,tx, grouping)
+#            outfile.write(tx + '\n')
+
+    print ('Total time: ' + str(maxTime))
+    print ('Legnth of log: ' + str(len(txn)))
     print partition
 #For the ring configuration, maintain the same naming scheme as presented in 
 #Simulator2.py 
@@ -105,9 +118,9 @@ def ReadLines(line):
 
 
     newLine = []
-    newLine.append(str(source))
-    newLine.append(str(dest))
-    newLine.extend(line[4:7])
+#    newLine.append(str(source))
+#    newLine.append(str(dest))
+    newLine.extend(line[0:7])
 #    print(newLine)
 #    print(type(newLine))
     newLine = (' ').join(newLine)
@@ -120,9 +133,14 @@ def ReadLines(line):
         
 
 def main():
+    print
+    print
     logfile = str(sys.argv[1])
     
     CleanLog(logfile)
+    
+    print
+    print
 
 
 
