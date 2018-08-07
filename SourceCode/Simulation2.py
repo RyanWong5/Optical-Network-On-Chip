@@ -315,7 +315,7 @@ for times in range(0, numberOfConfigurations):
                     index = config.activeReq.index(requests) #Find the request in the actual list
                     config.activeReq[index].set_endTime(t) #After full trasmition (w/o OccToEcc conversion)
                     config.activeReq[index].set_waitTime()
-                    writeResults(outputName,config.activeReq[index]) #Write all the info of the data in the file
+#                    writeResults(outputName,config.activeReq[index]) #Write all the info of the data in the file
                     config.activeReq[index].reqProcessing() #Remove the request
                     activeRequests.remove(requests) #Remove the request from the other list
                     sourceNodeTracker.pop(index) #Remove the source node of this data from the list

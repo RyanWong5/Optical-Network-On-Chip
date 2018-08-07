@@ -22,8 +22,8 @@ import os
 import config_data
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--batch_size', default=100, type=int, help='batch size')
-parser.add_argument('--train_steps', default= 500000 , type=int,
+parser.add_argument('--batch_size', default= 100, type=int, help='batch size')
+parser.add_argument('--train_steps', default= 100000 , type=int,
                     help='number of training steps')
 
 def main(argv):
@@ -44,7 +44,7 @@ def main(argv):
         hidden_units=[15,15 ],
 #        hidden_units=[ 15,15],
         #Specify Activation functions
-#        activation_fn = tf.nn.sigmoid,
+        activation_fn = tf.nn.sigmoid,
         # The model must choose between 3 classes.
         n_classes=5)
         # Specify a place to save the model
